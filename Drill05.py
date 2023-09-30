@@ -22,20 +22,41 @@ def random_point():
     x1 ,y1 = x2, y2
     x2, y2 = random.randint(200, 1000) , random.randint(100, 800)
 
+def draw_arrow():
+    global i
+    if i >= 100:
+        random_point()
+        i = 0
+    hand_arrow.draw(x2,y2)
+
+def fallow_point():
+    global frame, i
+    t = i / 100
+    x = (1 - t) * x1 + t * x2
+    y = (1 - t) * y1 + t * y2
+    if x1 < x2:
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    else:
+        character.clip_draw(frame * 100, 100 * 0, 100, 100, x, y)
+    i = i + 1
+    if i % 6 == 0:
+        frame = (frame + 1) % 8
+
 running = True
 x1, y1 = TUK_WIDTH // 2, TUK_HEIGHT // 2
 x2, y2 = random.randint(300, 900) , random.randint(200, 500)
+i = 0
 frame = 0
 hide_cursor()
 
 while running:
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    draw_arrow()
+    fallow_point()
     update_canvas()
-    frame = (frame + 1) % 8
-
     handle_events()
+    delay(0.01)
 
 close_canvas()
 
