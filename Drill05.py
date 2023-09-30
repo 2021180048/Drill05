@@ -1,5 +1,5 @@
 from pico2d import *
-
+import random
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 
@@ -20,7 +20,8 @@ def handle_events():
 
 
 running = True
-x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
+x1, y1 = TUK_WIDTH // 2, TUK_HEIGHT // 2
+x2, y2 = random.randint(300, 900) , random.randint(200, 500)
 frame = 0
 hide_cursor()
 
