@@ -17,7 +17,10 @@ def handle_events():
             running = False
     pass
 
-
+def random_point():
+    global x1, y1, x2, y2
+    x1 ,y1 = x2, y2
+    x2, y2 = random.randint(200, 1000) , random.randint(100, 800)
 
 running = True
 x1, y1 = TUK_WIDTH // 2, TUK_HEIGHT // 2
